@@ -1,0 +1,11 @@
+/* Shared theme tokens */
+:root {
+  --color-bg: 255 255 255;
+  --color-fg: 17 24 39;
+  --brand: 230 90% 55%;
+}
+.dark {
+  --color-bg: 17 24 39;
+  --color-fg: 243 244 246;
+  --brand: 230 95% 70%;
+}
