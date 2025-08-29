@@ -1,7 +1,19 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import { federation } from "@module-federation/vite"; // <-- named import
 
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
-})
+  plugins: [
+    react(),
+    federation({
+      name: "provider_firebase",
+      filename: "remoteEntry.js",
+      exposes: { "./createProvider": "./src/createProvider.ts" },
+      shared: {
+        react: { singleton: true, requiredVersion: "^19" },
+        "react-dom": { singleton: true, requiredVersion: "^19" },
+      },
+    }),
+  ],
+  server: { port: 5021 },
+});
